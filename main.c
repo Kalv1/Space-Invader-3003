@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <SDL2/SDL.h>
+#include "fichier_SDL.h"
 
 
 int main(int argc, char *argv[]){
@@ -23,9 +24,19 @@ int main(int argc, char *argv[]){
         SDL_Quit();
         return EXIT_FAILURE;
     }
+
+    // Mettre en place un contexte de rendu de l’écran
+    SDL_Renderer* ecran;ecran = SDL_CreateRenderer(fenetre, -1, SDL_RENDERER_ACCELERATED);
+    // Charger l’image
+    SDL_Texture* fond = charger_image( "images/fond.bmp", ecran );
+    
     // Boucle principale
     while(!terminer)
     {
+        SDL_RenderClear(ecran);
+        SDL_RenderCopy(ecran, fond, NULL, NULL);
+        //SDL_PollEvent ...
+        SDL_RenderPresent(ecran);
         while( SDL_PollEvent( &evenements ) )
         switch(evenements.type)
             {
@@ -40,6 +51,9 @@ int main(int argc, char *argv[]){
                 }
             }
     }
+
+    SDL_DestroyTexture(fond);
+    SDL_DestroyRenderer(ecran);
     // QUITTER SDL
     SDL_DestroyWindow(fenetre);
     SDL_Quit();
