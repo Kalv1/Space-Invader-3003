@@ -29,12 +29,30 @@ int main(int argc, char *argv[]){
     SDL_Renderer* ecran;ecran = SDL_CreateRenderer(fenetre, -1, SDL_RENDERER_ACCELERATED);
     // Charger l’image
     SDL_Texture* fond = charger_image( "images/fond.bmp", ecran );
+
+    // Charger l’image avec la transparence
+    Uint8 r = 255, g = 0, b = 0;
+    SDL_Texture* obj = charger_image_transparente("images/vaisseau.bmp", ecran, r, g, b);
+    SDL_Rect SrcR;
+    SrcR.x = 0;
+    SrcR.y = 0;
+    SrcR.w = 82; // Largeur de l’objet en pixels (à récupérer)
+    SrcR.h = 82; // Hauteur de l’objet en pixels (à récupérer)
+
+    SDL_Rect DestR;
+    DestR.x = 259;
+    DestR.y = 518;
+    DestR.w = 82;
+    DestR.h = 82;
+
+
     
     // Boucle principale
     while(!terminer)
     {
         SDL_RenderClear(ecran);
         SDL_RenderCopy(ecran, fond, NULL, NULL);
+        SDL_RenderCopy(ecran, obj, &SrcR, &DestR);
         //SDL_PollEvent ...
         SDL_RenderPresent(ecran);
         while( SDL_PollEvent( &evenements ) )
