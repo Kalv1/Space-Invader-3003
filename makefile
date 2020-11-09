@@ -1,6 +1,7 @@
 CC = gcc 
 EXEC = main
-SRC = main.c
+INC = base.h texture.h
+SRC = main.c texture.c 
 OBJ = $(SRC:.c=.o)
 CFLAGS = -W -Wall -ansi -std=c99 -g
 LDFLAGS = `sdl2-config --cflags --libs` -lSDL2_ttf -lSDL2_image

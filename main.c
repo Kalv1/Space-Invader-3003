@@ -1,12 +1,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
-#include <SDL2/SDL.h>
-
+#include "texture.h"
+#include "base.h"
 
 int main(int argc, char *argv[]){
     SDL_Window* fenetre;  // Déclaration de la fenêtre
     SDL_Event evenements; // Événements liés à la fenêtre
+    world_t world;
+    SDL_t textures;
+    SDL_Renderer *renderer;
     bool terminer = false;
 
     if(SDL_Init(SDL_INIT_VIDEO) < 0) // Initialisation de la SDL
@@ -23,9 +26,12 @@ int main(int argc, char *argv[]){
         SDL_Quit();
         return EXIT_FAILURE;
     }
+
+
     // Boucle principale
     while(!terminer)
     {
+        refresh(renderer,&world,&textures);
         while( SDL_PollEvent( &evenements ) )
         switch(evenements.type)
             {
