@@ -5,9 +5,43 @@
 #include "fichier_SDL.h"
 
 
+
+//structure de donne (vaisseau/rochers)
+struct sprite_s{
+    int x;
+    int y;  
+    int h; // hauteur
+    int w; // largeur
+    int v; // vitesse verticale
+};
+
+typedef struct sprite_s sprite_t;
+
+
+
+struct world_s{
+
+    sprite_t ship;
+
+    int score; // pour plus tard
+
+};
+
+typedef struct world_s world_t;
+
+
+
 int main(int argc, char *argv[]){
     SDL_Window* fenetre;  // Déclaration de la fenêtre
     SDL_Event evenements; // Événements liés à la fenêtre
+    // world_t world;
+
+    // world->ship.x=600/2;
+    // world->ship.y=50;
+    // world->ship.h=30;
+    // world->ship.w=30;
+    // world->ship.v=1;
+
     bool terminer = false;
 
     if(SDL_Init(SDL_INIT_VIDEO) < 0) // Initialisation de la SDL
@@ -63,9 +97,12 @@ int main(int argc, char *argv[]){
                     break;
                 case SDL_KEYDOWN:
                     switch(evenements.key.keysym.sym)
+                    
                 {
                     case SDLK_ESCAPE:
                         terminer = true;  break;
+                    // case SDLK_LEFT:
+                    //     world->ship.x-=(5 * world->ship.v); break;
                 }
             }
     }
