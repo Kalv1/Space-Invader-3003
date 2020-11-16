@@ -7,3 +7,7 @@ SDL2
 # Suivi
 Semaine 0:
 Mise à jour du READ ME / Creation du makefile / Initialisation SDL
+Semaine 1: 
+Affichage du fond et du vaisseau 
+Semaine 2: 
+Integration de Zixun, creation d'une structure world et vaisseau et debut de la creation d'evenement (mouvements vaisseau)
