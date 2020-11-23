@@ -13,3 +13,6 @@ Affichage du fond et du vaisseau
 
 Semaine 2: 
 Integration de Zixun, creation d'une structure world et vaisseau et debut de la creation d'evenement (mouvements vaisseau)
+
+Semaine 3:
+Mouvements vaisseaux + Limites du monde + debut systeme de sauvegarde des scores dans un fichier
