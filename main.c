@@ -81,6 +81,8 @@ int main(int argc, char *argv[]){
                             break;
                     }
             }
+        //printf("Collision: %d",sprites_collide(&world.ship, &world.roche));
+        world.roche.pos.y += 0.2*DEPLACEMENT;
     }
 
     SDL_DestroyTexture(fond);

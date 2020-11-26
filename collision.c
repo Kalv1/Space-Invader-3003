@@ -3,7 +3,7 @@
 #include <stdbool.h>
 
 #include <SDL2/SDL.h>
-
+#include "math.h"
 #include "collision.h"
 #include "initData.h"
 
@@ -33,3 +33,14 @@ void exceed_limit_down(sprite_t *ship){
         ship->pos.y = 600 - SHIP_SIZE;
     }
 }
+
+
+int sprites_collide(sprite_t *ship, sprite_t *roche){
+    int collision = 0;
+    float dist_centre_sprite = sqrt(pow(ship->pos.x-roche->pos.x,2)+pow(ship->pos.y-roche->pos.y,2));
+        if(dist_centre_sprite <= (ship->pos.h+roche->pos.h)/2){
+            collision = 1;
+        }
+    return collision;
+}
+
