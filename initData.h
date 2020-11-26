@@ -13,6 +13,7 @@ typedef struct sprite_s sprite_t;
 
 struct world_s{
     sprite_t ship;
+    sprite_t roche;
     int score; // pour plus tard
 };
 
@@ -20,5 +21,6 @@ typedef struct world_s world_t;
 
 
 world_t initData(SDL_Renderer * ecran);
+int generate_number(int a, int b);
 
 #endif

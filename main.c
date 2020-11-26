@@ -7,6 +7,7 @@
 #include "collision.h"
 
 #define DEPLACEMENT 5
+#define WINDOWN_H 600
 
 
 int main(int argc, char *argv[]){
@@ -23,7 +24,7 @@ int main(int argc, char *argv[]){
         return EXIT_FAILURE;
     }
     // Créer la fenêtre
-    fenetre = SDL_CreateWindow("Warblade Like", SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED, 600, 600, 0);
+    fenetre = SDL_CreateWindow("Warblade Like", SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED, WINDOWN_H, WINDOWN_H, 0);
     if(fenetre == NULL) // En cas d’erreur
     {
         printf("Erreur de la creation d’une fenetre: %s",SDL_GetError());
@@ -49,6 +50,7 @@ int main(int argc, char *argv[]){
         SDL_RenderClear(ecran);
         SDL_RenderCopy(ecran, fond, NULL, NULL);
         SDL_RenderCopy(ecran, world.ship.obj, &SrcR, &world.ship.pos);
+        SDL_RenderCopy(ecran, world.roche.obj, &SrcR, &world.roche.pos);
         //SDL_PollEvent ...
         SDL_RenderPresent(ecran);
         while( SDL_PollEvent( &evenements ) )
