@@ -4,31 +4,9 @@
 #include <SDL2/SDL.h>
 #include "fichier_SDL.h"
 #include "initData.h"
+#include "collision.h"
 
-void exceed_limit_right(sprite_t *ship){
-    if ((ship->pos.x + 82/2) > 600-(82/2) ){
-        ship->pos.x= 600 - (82);
-    }
-}
-
-void exceed_limit_up(sprite_t *ship){
-    if ((ship->pos.y) < 0 ){
-        ship->pos.y = 0;
-    }
-}
-
-
-void exceed_limit_left(sprite_t *ship){
-    if ((ship->pos.x - 82/2) < 0 - (82/2) ){
-        ship->pos.x = 0;
-    }
-}
-
-void exceed_limit_down(sprite_t *ship){
-    if ((ship->pos.y) > 600 - 82 ){
-        ship->pos.y = 600 - 82;
-    }
-}
+#define DEPLACEMENT 5
 
 
 int main(int argc, char *argv[]){
@@ -84,19 +62,19 @@ int main(int argc, char *argv[]){
                         case SDLK_ESCAPE:
                             terminer = true;  break;
                         case SDLK_LEFT:
-                            world.ship.pos.x -= 15;
+                            world.ship.pos.x -= DEPLACEMENT;
                             exceed_limit_left(&world.ship);
                             break;
                         case SDLK_RIGHT:
-                            world.ship.pos.x += 15;
+                            world.ship.pos.x += DEPLACEMENT;
                             exceed_limit_right(&world.ship);
                             break;
                         case SDLK_UP:
-                            world.ship.pos.y -= 15;
+                            world.ship.pos.y -= DEPLACEMENT;
                             exceed_limit_up(&world.ship);
                             break;
                         case SDLK_DOWN:
-                            world.ship.pos.y += 15;
+                            world.ship.pos.y += DEPLACEMENT;
                             exceed_limit_down(&world.ship);
                             break;
                     }
