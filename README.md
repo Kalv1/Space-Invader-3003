@@ -16,3 +16,6 @@ Integration de Zixun, creation d'une structure world et vaisseau et debut de la 
 
 Semaine 3:
 Mouvements vaisseaux + Limites du monde + debut systeme de sauvegarde des scores dans un fichier
+
+Semaine 4: 
+Ajout Detection collision + initialisation d'un rocher, deplacement et affichage 
