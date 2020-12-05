@@ -6,6 +6,8 @@ struct sprite_s{
     SDL_Rect pos;
     SDL_Texture *obj;
     int vitesse; // vitesse verticale
+    int nbVies;
+    int visible; // est ce que le sprite est visible ? 
 };
 
 typedef struct sprite_s sprite_t;
@@ -14,6 +16,7 @@ typedef struct sprite_s sprite_t;
 struct world_s{
     sprite_t ship;
     sprite_t roche;
+    //sprite_t tabRoche[3];
     int score; // pour plus tard
 };
 

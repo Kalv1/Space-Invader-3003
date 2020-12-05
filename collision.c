@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-
 #include <SDL2/SDL.h>
 #include "math.h"
 #include "collision.h"
@@ -44,3 +43,21 @@ int sprites_collide(sprite_t *ship, sprite_t *roche){
     return collision;
 }
 
+void handle_sprites_collision(world_t *world, sprite_t *ship, sprite_t *roche){
+    int collision;
+    collision = sprites_collide(ship,roche);
+
+        if (collision == 1){
+            //vie -1
+            world->ship.nbVies --;
+
+            //score -10
+            //world->score = world->score - 2;
+
+            //ralentissement
+            printf("test");
+            world->ship.vitesse = world->ship.vitesse;
+
+            world->roche.visible = 1;
+        }
+}

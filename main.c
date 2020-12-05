@@ -14,6 +14,7 @@ int main(int argc, char *argv[]){
 
     SDL_Window* fenetre;  // Déclaration de la fenêtre
     SDL_Event evenements; // Événements liés à la fenêtre
+    srand(time(NULL));
 
     bool terminer = false;
 
@@ -51,6 +52,9 @@ int main(int argc, char *argv[]){
         SDL_RenderCopy(ecran, fond, NULL, NULL);
         SDL_RenderCopy(ecran, world.ship.obj, &SrcR, &world.ship.pos);
         SDL_RenderCopy(ecran, world.roche.obj, &SrcR, &world.roche.pos);
+        // for(int i = 0; i< NB_ROCHES; i++){
+        //     SDL_RenderCopy(ecran, world.tabRoche[i].obj, &SrcR, &world.tabRoche[i].pos);
+        // }
         //SDL_PollEvent ...
         SDL_RenderPresent(ecran);
         while( SDL_PollEvent( &evenements ) )
@@ -64,25 +68,27 @@ int main(int argc, char *argv[]){
                         case SDLK_ESCAPE:
                             terminer = true;  break;
                         case SDLK_LEFT:
-                            world.ship.pos.x -= DEPLACEMENT;
+                            world.ship.pos.x -= world.ship.vitesse*DEPLACEMENT;
                             exceed_limit_left(&world.ship);
                             break;
                         case SDLK_RIGHT:
-                            world.ship.pos.x += DEPLACEMENT;
+                            world.ship.pos.x += world.ship.vitesse*DEPLACEMENT;
                             exceed_limit_right(&world.ship);
                             break;
                         case SDLK_UP:
-                            world.ship.pos.y -= DEPLACEMENT;
+                            world.ship.pos.y -= world.ship.vitesse*DEPLACEMENT;
                             exceed_limit_up(&world.ship);
                             break;
                         case SDLK_DOWN:
-                            world.ship.pos.y += DEPLACEMENT;
+                            world.ship.pos.y += world.ship.vitesse*DEPLACEMENT;
                             exceed_limit_down(&world.ship);
                             break;
                     }
             }
         //printf("Collision: %d",sprites_collide(&world.ship, &world.roche));
-        world.roche.pos.y += 0.2*DEPLACEMENT;
+        //printf(world.ship.nbVies); <- Impossible
+        handle_sprites_collision(&world, &world.ship, &world.roche);
+        world.roche.pos.y += DEPLACEMENT;
     }
 
     SDL_DestroyTexture(fond);
