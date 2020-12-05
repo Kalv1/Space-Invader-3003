@@ -12,11 +12,12 @@ struct sprite_s{
 
 typedef struct sprite_s sprite_t;
 
+sprite_t alearoch();
 
 struct world_s{
     sprite_t ship;
     sprite_t roche;
-    //sprite_t tabRoche[3];
+    sprite_t tabRoche[3];
     int score; // pour plus tard
 };
 

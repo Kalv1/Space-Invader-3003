@@ -5,11 +5,27 @@
 #include "fichier_SDL.h"
 #include "math.h"
 
-#define NB_ROCHES 3
-
 
 int generate_number(int a, int b){
     return rand()%(b-a)+a;
+}
+
+sprite_t alearoc(SDL_Texture* rocheobj){
+        SDL_Rect initPositionRoche = {
+            .x = generate_number(62/2,600-(40)),
+            .y = -12,
+            .w = 40,
+            .h = 40
+        };
+
+        sprite_t roche = {
+            .pos = initPositionRoche,
+            .obj = rocheobj,
+            .vitesse = 1, // pas utilisé 
+            .visible = 0
+    };
+
+    return roche;
 }
 
 world_t initData(SDL_Renderer * ecran) {
@@ -26,21 +42,6 @@ world_t initData(SDL_Renderer * ecran) {
     };
 
 
-
-    SDL_Rect initPositionRoche = {
-            .x = generate_number(62/2,600-(62/2)),
-            .y = -12,
-            .w = 40,
-            .h = 40
-    };
-
-//     SDL_Rect initPositionTabRoche = {
-//             .x = generate_number(62/2,600-(62/2)),
-//             .y = -12,
-//             .w = 40,
-//             .h = 40
-//     };
-
     sprite_t ship = {
             .pos = initPosition,
             .obj = obj,
@@ -49,27 +50,12 @@ world_t initData(SDL_Renderer * ecran) {
             .visible = 0
     };
 
-    sprite_t roche = {
-            .pos = initPositionRoche,
-            .obj = rocheobj,
-            .vitesse = 1, // pas utilisé 
-            .visible = 0
-    };
-
-
-//     sprite_t tabRoche = {
-//             .pos = initPositionTabRoche,
-//             .obj = rocheobj,
-//             .vitesse = 0.00000000001 // pas utilisé 
-//     };
-
     
 
     world_t world = {
             .score = 0,
             .ship = ship,
-            .roche = roche,
-            //.tabRoche = tabRoche
+            .tabRoche = {alearoc(rocheobj),alearoc(rocheobj),alearoc(rocheobj)}
     };
 
     return world;

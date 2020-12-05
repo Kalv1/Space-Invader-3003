@@ -51,10 +51,9 @@ int main(int argc, char *argv[]){
         SDL_RenderClear(ecran);
         SDL_RenderCopy(ecran, fond, NULL, NULL);
         SDL_RenderCopy(ecran, world.ship.obj, &SrcR, &world.ship.pos);
-        SDL_RenderCopy(ecran, world.roche.obj, &SrcR, &world.roche.pos);
-        // for(int i = 0; i< NB_ROCHES; i++){
-        //     SDL_RenderCopy(ecran, world.tabRoche[i].obj, &SrcR, &world.tabRoche[i].pos);
-        // }
+        for(int i = 0; i< 3; i++){
+             SDL_RenderCopy(ecran, world.tabRoche[i].obj, &SrcR, &world.tabRoche[i].pos);
+        }
         //SDL_PollEvent ...
         SDL_RenderPresent(ecran);
         while( SDL_PollEvent( &evenements ) )
@@ -85,10 +84,9 @@ int main(int argc, char *argv[]){
                             break;
                     }
             }
-        //printf("Collision: %d",sprites_collide(&world.ship, &world.roche));
-        //printf(world.ship.nbVies); <- Impossible
-        handle_sprites_collision(&world, &world.ship, &world.roche);
-        world.roche.pos.y += DEPLACEMENT;
+            for(int i = 0; i < 3; i++){
+                world.tabRoche[i].pos.y += 1;
+            }
     }
 
     SDL_DestroyTexture(fond);
