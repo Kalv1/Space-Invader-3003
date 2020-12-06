@@ -1,6 +1,7 @@
 #ifndef H_INITDATA
 #define H_INITDATA
 
+#define NB_ROCHERS 9
 
 struct sprite_s{
     SDL_Rect pos;
@@ -12,12 +13,12 @@ struct sprite_s{
 
 typedef struct sprite_s sprite_t;
 
-sprite_t alearoch();
+sprite_t alearoc(SDL_Texture* rocheobj);
 
 struct world_s{
     sprite_t ship;
     sprite_t roche;
-    sprite_t tabRoche[3];
+    sprite_t tabRoche[NB_ROCHERS];
     int score; // pour plus tard
 };
 

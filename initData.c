@@ -7,6 +7,7 @@
 
 #define DIST_ROCHE 80
 
+
 int generate_number(int a, int b){
     return rand()%(b-a)+a;
 }
@@ -14,7 +15,7 @@ int generate_number(int a, int b){
 sprite_t alearoc(SDL_Texture* rocheobj){
         SDL_Rect initPositionRoche = {
             .x = generate_number(62/2,600-(40)),
-            .y = -generate_number(0,150),
+            .y = -generate_number(0,500),
             .w = 40,
             .h = 40
         };
@@ -47,7 +48,7 @@ world_t initData(SDL_Renderer * ecran) {
             .pos = initPosition,
             .obj = obj,
             .vitesse = 15,
-            .nbVies = 1,
+            .nbVies = 10,
             .visible = 0
     };
 
@@ -56,7 +57,7 @@ world_t initData(SDL_Renderer * ecran) {
     world_t world = {
             .score = 0,
             .ship = ship,
-            .tabRoche = {alearoc(rocheobj),alearoc(rocheobj),alearoc(rocheobj)}
+            .tabRoche = {alearoc(rocheobj),alearoc(rocheobj),alearoc(rocheobj),alearoc(rocheobj),alearoc(rocheobj),alearoc(rocheobj),alearoc(rocheobj),alearoc(rocheobj),alearoc(rocheobj)}
     };
 
     return world;

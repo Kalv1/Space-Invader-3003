@@ -9,6 +9,8 @@
 #define DEPLACEMENT 1
 #define WINDOWN_H 600
 #define DIST_ROCHE 40
+#define NB_ROCHERS 9
+
 
 
 
@@ -17,7 +19,7 @@ int main(int argc, char *argv[]){
     SDL_Window* fenetre;  // Déclaration de la fenêtre
     SDL_Event evenements; // Événements liés à la fenêtre
     srand(time(NULL));
-
+    int etat = 0;
     bool terminer = false;
 
     if(SDL_Init(SDL_INIT_VIDEO) < 0) // Initialisation de la SDL
@@ -53,7 +55,7 @@ int main(int argc, char *argv[]){
         SDL_RenderClear(ecran);
         SDL_RenderCopy(ecran, fond, NULL, NULL);
         SDL_RenderCopy(ecran, world.ship.obj, &SrcR, &world.ship.pos);
-        for(int i = 0; i< 3; i++){
+        for(int i = 0; i< NB_ROCHERS; i++){
              SDL_RenderCopy(ecran, world.tabRoche[i].obj, &SrcR, &world.tabRoche[i].pos);
         }
         //SDL_PollEvent ...
@@ -90,21 +92,26 @@ int main(int argc, char *argv[]){
             int tempsActu = SDL_GetTicks();
 
             if(tempsActu > tempsAv + 50 ){
-                for(int i = 0; i < 3; i++){
-                world.tabRoche[i].pos.y += world.tabRoche[i].vitesse *8;
+                for(int i = 0; i < NB_ROCHERS; i++){
+                world.tabRoche[i].pos.y += world.tabRoche[i].vitesse *5;
                 handle_sprites_collision(&world, &world.ship, &world.tabRoche[i]);
+                exceed_limit_ennemy(&world);
                     if(world.ship.nbVies == 0){
-                        terminer = true;
+                        etat = 1; //perdu
                     }
                 tempsAv = tempsActu;
                 }
             }
+
+        if(etat == 1){
+            printf("GAMEOVER");
+            terminer = true;
+        }
     }
     
 
     SDL_DestroyTexture(fond);
     SDL_DestroyRenderer(ecran);
-    // QUITTER SDL
     SDL_DestroyWindow(fenetre);
     SDL_Quit();
     return 0;

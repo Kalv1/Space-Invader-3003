@@ -33,6 +33,19 @@ void exceed_limit_down(sprite_t *ship){
     }
 }
 
+void exceed_limit_ennemy(world_t *world){
+    int i;
+    for(i=0;i<NB_ROCHERS;i++){
+        if(world->tabRoche[i].pos.y - 40/2 > 600){
+            world->tabRoche[i].pos.y = -generate_number(0,500);
+            world->score += 10; 
+            world->tabRoche[i].vitesse += 1;
+        }
+    }
+    printf("Score: %i \n", world->score);
+}
+
+
 
 int sprites_collide(sprite_t *ship, sprite_t *roche){
     int collision = 0;
@@ -52,12 +65,11 @@ void handle_sprites_collision(world_t *world, sprite_t *ship, sprite_t *roche){
             world->ship.nbVies -= 1;
 
             //score -10
-            //world->score = world->score - 2;
+            world->score = world->score - 2;
 
             //ralentissement
-            printf("test");
+            printf("Pourcent vie:%i\n", world->ship.nbVies);
             world->ship.vitesse = world->ship.vitesse -1;
 
-            //world->roche.visible = 1;
         }
 }
