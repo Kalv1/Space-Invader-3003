@@ -49,7 +49,7 @@ void handle_sprites_collision(world_t *world, sprite_t *ship, sprite_t *roche){
 
         if (collision == 1){
             //vie -1
-            world->ship.nbVies --;
+            world->ship.nbVies -= 1;
 
             //score -10
             //world->score = world->score - 2;
@@ -58,6 +58,6 @@ void handle_sprites_collision(world_t *world, sprite_t *ship, sprite_t *roche){
             printf("test");
             world->ship.vitesse = world->ship.vitesse -1;
 
-            world->roche.visible = 1;
+            //world->roche.visible = 1;
         }
 }

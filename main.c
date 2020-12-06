@@ -6,9 +6,10 @@
 #include "initData.h"
 #include "collision.h"
 
-#define DEPLACEMENT 5
+#define DEPLACEMENT 1
 #define WINDOWN_H 600
 #define DIST_ROCHE 40
+
 
 
 int main(int argc, char *argv[]){
@@ -90,12 +91,14 @@ int main(int argc, char *argv[]){
 
             if(tempsActu > tempsAv + 50 ){
                 for(int i = 0; i < 3; i++){
-                world.tabRoche[i].pos.y += 15;
-                //handle_sprites_collision(&world, &world.ship, &world.tabRoche[i]);
+                world.tabRoche[i].pos.y += world.tabRoche[i].vitesse *8;
+                handle_sprites_collision(&world, &world.ship, &world.tabRoche[i]);
+                    if(world.ship.nbVies == 0){
+                        terminer = true;
+                    }
                 tempsAv = tempsActu;
+                }
             }
-            }
-            
     }
     
 

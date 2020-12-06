@@ -22,7 +22,7 @@ sprite_t alearoc(SDL_Texture* rocheobj){
         sprite_t roche = {
             .pos = initPositionRoche,
             .obj = rocheobj,
-            .vitesse = 1, // pas utilisé 
+            .vitesse = 2, 
             .visible = 0
     };
 
@@ -46,8 +46,8 @@ world_t initData(SDL_Renderer * ecran) {
     sprite_t ship = {
             .pos = initPosition,
             .obj = obj,
-            .vitesse = 3,
-            .nbVies = 3,
+            .vitesse = 15,
+            .nbVies = 1,
             .visible = 0
     };
 
