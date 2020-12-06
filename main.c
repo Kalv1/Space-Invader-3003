@@ -45,7 +45,7 @@ int main(int argc, char *argv[]){
     SDL_Rect SrcR;
     SrcR.w = 82; // Largeur de l’objet en pixels (à récupérer)
     SrcR.h = 82; // Hauteur de l’objet en pixels (à récupérer)
-    
+    int tempsAv = 0;
     // Boucle principale
     while(!terminer)
     {
@@ -85,12 +85,19 @@ int main(int argc, char *argv[]){
                             break;
                     }
             }
-            for(int i = 0; i < 3; i++){
-                world.tabRoche[i].pos.y += 1;
+
+            int tempsActu = SDL_GetTicks();
+
+            if(tempsActu > tempsAv + 50 ){
+                for(int i = 0; i < 3; i++){
+                world.tabRoche[i].pos.y += 15;
                 //handle_sprites_collision(&world, &world.ship, &world.tabRoche[i]);
+                tempsAv = tempsActu;
+            }
             }
             
     }
+    
 
     SDL_DestroyTexture(fond);
     SDL_DestroyRenderer(ecran);
@@ -98,5 +105,4 @@ int main(int argc, char *argv[]){
     SDL_DestroyWindow(fenetre);
     SDL_Quit();
     return 0;
-    pause(10);
 }
