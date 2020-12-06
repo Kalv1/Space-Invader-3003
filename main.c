@@ -8,6 +8,7 @@
 
 #define DEPLACEMENT 5
 #define WINDOWN_H 600
+#define DIST_ROCHE 40
 
 
 int main(int argc, char *argv[]){
@@ -86,7 +87,9 @@ int main(int argc, char *argv[]){
             }
             for(int i = 0; i < 3; i++){
                 world.tabRoche[i].pos.y += 1;
+                //handle_sprites_collision(&world, &world.ship, &world.tabRoche[i]);
             }
+            
     }
 
     SDL_DestroyTexture(fond);
@@ -95,4 +98,5 @@ int main(int argc, char *argv[]){
     SDL_DestroyWindow(fenetre);
     SDL_Quit();
     return 0;
+    pause(10);
 }

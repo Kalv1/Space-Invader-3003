@@ -5,6 +5,7 @@
 #include "fichier_SDL.h"
 #include "math.h"
 
+#define DIST_ROCHE 80
 
 int generate_number(int a, int b){
     return rand()%(b-a)+a;
@@ -13,7 +14,7 @@ int generate_number(int a, int b){
 sprite_t alearoc(SDL_Texture* rocheobj){
         SDL_Rect initPositionRoche = {
             .x = generate_number(62/2,600-(40)),
-            .y = -12,
+            .y = -generate_number(0,150),
             .w = 40,
             .h = 40
         };

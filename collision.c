@@ -56,7 +56,7 @@ void handle_sprites_collision(world_t *world, sprite_t *ship, sprite_t *roche){
 
             //ralentissement
             printf("test");
-            world->ship.vitesse = world->ship.vitesse;
+            world->ship.vitesse = world->ship.vitesse -1;
 
             world->roche.visible = 1;
         }
