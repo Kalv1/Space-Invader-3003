@@ -19,3 +19,6 @@ Mouvements vaisseaux + Limites du monde + debut systeme de sauvegarde des scores
 
 Semaine 4: 
 Ajout Detection collision + initialisation d'un rocher, deplacement et affichage 
+
+Semaine 5:
+Tableau rochers avec position aléatoire + score + vie + collisions
