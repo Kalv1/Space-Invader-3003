@@ -4,6 +4,7 @@
 #include <SDL2/SDL.h>
 #include "fichier_SDL.h"
 #include "initData.h"
+#include "time.h"
 #include "collision.h"
 #include "sdl2-ttf-light.c"
 
@@ -48,9 +49,14 @@ int main(int argc, char *argv[]){
     world_t world = initData(ecran);
 
     //Charger la font:
-    TTF_Font *font = load_font("Android 101.ttf",40);
+    TTF_Font *font = load_font("font/Android 101.ttf",30);
 
-
+    FILE * pfile;
+    pfile =fopen("myfile.txt","rb");
+    char a[6];
+    fscanf(pfile, "%[^\n]", a);
+    fclose(pfile);
+    int b = atoi(a);
 
     SDL_Rect SrcR;
     SrcR.w = 82; // Largeur de l’objet en pixels (à récupérer)
@@ -65,9 +71,24 @@ int main(int argc, char *argv[]){
         for(int i = 0; i< NB_ROCHERS; i++){
              SDL_RenderCopy(ecran, world.tabRoche[i].obj, &SrcR, &world.tabRoche[i].pos);
         }
+
+        
         char *str = malloc(sizeof(char) * 20);
-        sprintf(str,"SCORE: %6d", world.score);
-        apply_text(ecran,10,10,50,20,str,font);
+
+        if(etat == 0){
+            sprintf(str,"SCORE: %6d", world.score);
+            apply_text(ecran,250,20,100,50,str,font);
+
+            sprintf(str,"VIE: %6d", world.ship.nbVies);
+            apply_text(ecran,20,20,50,25,str,font);
+
+            sprintf(str,"HIGH-SCORE: %6d", b);
+            apply_text(ecran,235,70,125,50,str,font);
+
+            SDL_RenderPresent(ecran);
+        }
+
+
         //SDL_PollEvent ...
         SDL_RenderPresent(ecran);
         while( SDL_PollEvent( &evenements ) )
@@ -114,12 +135,38 @@ int main(int argc, char *argv[]){
                 }
             }
 
+
         if(etat == 1){
-            printf("GAMEOVER");
+            char *str = malloc(sizeof(char) * 20);
+            sprintf(str,"SCORE: %6d", world.score);
+            apply_text(ecran,(600/2)-100,(600)/2 -75,200,100,"GAMEOVER",font);
+            apply_text(ecran,(600/2)-100,(600)/2 +10,200,75,str,font);
+            SDL_RenderPresent(ecran);
             terminer = true;
         }
     }
+
+
+    int c = world.score;
     
+
+    if(b < c){
+        pfile =fopen("myfile.txt","w+");
+        if(pfile == NULL){
+            perror("Error opening file");
+        } else{
+            fprintf(pfile, "%d", c);
+            fprintf(pfile, "%s", ";\n");
+            if(ferror(pfile)){
+                perror("Error writing to myfile.txt \n");
+                fclose(pfile);
+            }
+        }     
+    }
+
+
+    
+    sleep(2);
     TTF_CloseFont(font);
     SDL_DestroyTexture(fond);
     SDL_DestroyRenderer(ecran);

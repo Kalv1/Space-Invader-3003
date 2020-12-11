@@ -1,10 +1,4 @@
-/**
- * \file const_structs.h
- * \brief Header de sdl2-ttf-light
- * \author Guillaume Zimol 
- * \version 1.0
- * \date 5 Mai 2020
- */
+
 
 #ifndef __SDL2_TTF_LIGHT__H
 #define __SDL2_TTF_LIGHT__H
