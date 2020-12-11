@@ -5,6 +5,7 @@
 #include "fichier_SDL.h"
 #include "initData.h"
 #include "collision.h"
+#include "sdl2-ttf-light.c"
 
 #define DEPLACEMENT 1
 #define WINDOWN_H 600
@@ -21,6 +22,7 @@ int main(int argc, char *argv[]){
     srand(time(NULL));
     int etat = 0;
     bool terminer = false;
+    init_ttf();
 
     if(SDL_Init(SDL_INIT_VIDEO) < 0) // Initialisation de la SDL
     {
@@ -45,6 +47,11 @@ int main(int argc, char *argv[]){
 
     world_t world = initData(ecran);
 
+    //Charger la font:
+    TTF_Font *font = load_font("Android 101.ttf",40);
+
+
+
     SDL_Rect SrcR;
     SrcR.w = 82; // Largeur de l’objet en pixels (à récupérer)
     SrcR.h = 82; // Hauteur de l’objet en pixels (à récupérer)
@@ -58,6 +65,9 @@ int main(int argc, char *argv[]){
         for(int i = 0; i< NB_ROCHERS; i++){
              SDL_RenderCopy(ecran, world.tabRoche[i].obj, &SrcR, &world.tabRoche[i].pos);
         }
+        char *str = malloc(sizeof(char) * 20);
+        sprintf(str,"SCORE: %6d", world.score);
+        apply_text(ecran,10,10,50,20,str,font);
         //SDL_PollEvent ...
         SDL_RenderPresent(ecran);
         while( SDL_PollEvent( &evenements ) )
@@ -89,6 +99,7 @@ int main(int argc, char *argv[]){
                     }
             }
 
+
             int tempsActu = SDL_GetTicks();
 
             if(tempsActu > tempsAv + 50 ){
@@ -109,7 +120,7 @@ int main(int argc, char *argv[]){
         }
     }
     
-
+    TTF_CloseFont(font);
     SDL_DestroyTexture(fond);
     SDL_DestroyRenderer(ecran);
     SDL_DestroyWindow(fenetre);
