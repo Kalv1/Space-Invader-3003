@@ -1,7 +1,7 @@
 
 
-#ifndef __SDL2_TTF_LIGHT__H
-#define __SDL2_TTF_LIGHT__H
+#ifndef __TTF_SDL__
+#define __TTF_SDL__
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
