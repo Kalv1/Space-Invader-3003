@@ -29,4 +29,7 @@ void apply_text(SDL_Renderer *renderer, int x, int y, int w, int h, const char *
 
     SDL_RenderCopy(renderer, texture, NULL, &dstrect2);
 
+    SDL_DestroyTexture(texture);
+    SDL_FreeSurface(surface);
+
 }

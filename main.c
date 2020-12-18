@@ -132,13 +132,13 @@ int main() {
 
 
         if (etat == 1) {
-            char *str = malloc(sizeof(char) * 20);
             sprintf(str, "SCORE: %6d", world.score);
             apply_text(ecran, (600 / 2) - 100, (600) / 2 - 75, 200, 100, "GAMEOVER", font);
             apply_text(ecran, (600 / 2) - 100, (600) / 2 + 10, 200, 75, str, font);
             SDL_RenderPresent(ecran);
             terminer = true;
         }
+        free(str);
     }
 
 
