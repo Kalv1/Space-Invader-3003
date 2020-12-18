@@ -24,7 +24,8 @@ int main() {
     bool terminer = false;
     init_ttf();
 
-    if (SDL_Init(SDL_INIT_EVERYTHING) < 0) // Initialisation de la SDL
+
+    if (SDL_Init(SDL_INIT_VIDEO) < 0) // Initialisation de la SDL
     {
         printf("Erreur d’initialisation de la SDL: %s", SDL_GetError());
         SDL_Quit();

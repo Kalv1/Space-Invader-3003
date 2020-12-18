@@ -57,8 +57,12 @@ world_t initData(SDL_Renderer * ecran) {
     world_t world = {
             .score = 0,
             .ship = ship,
-            .tabRoche = {alearoc(rocheobj),alearoc(rocheobj),alearoc(rocheobj),alearoc(rocheobj),alearoc(rocheobj),alearoc(rocheobj),alearoc(rocheobj),alearoc(rocheobj),alearoc(rocheobj)}
+            .tabRoche = malloc(sizeof(sprite_t) * NB_ROCHERS)
     };
+
+    for(int i = 0 ; i < NB_ROCHERS ; i++){
+        world.tabRoche[i] = alearoc(rocheobj);
+    }
 
     return world;
 }

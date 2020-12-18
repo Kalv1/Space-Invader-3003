@@ -18,7 +18,7 @@ sprite_t alearoc(SDL_Texture* rocheobj);
 struct world_s{
     sprite_t ship;
     sprite_t roche;
-    sprite_t tabRoche[NB_ROCHERS];
+    sprite_t *tabRoche;
     int score; // pour plus tard
 };
 
