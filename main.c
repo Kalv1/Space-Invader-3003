@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <SDL2/SDL.h>
+#include <unistd.h>
 #include "fichier_SDL.h"
 #include "initData.h"
 #include "time.h"
@@ -16,14 +17,14 @@
 
 int main() {
 
-    SDL_Window *fenetre;  // Déclaration de la fenêtre
-    SDL_Event evenements; // Événements liés à la fenêtre
+    SDL_Window *fenetre = NULL;  // Déclaration de la fenêtre
+    SDL_Event evenements = {0}; // Événements liés à la fenêtre
     srand(time(NULL));
     int etat = 0;
     bool terminer = false;
     init_ttf();
 
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) // Initialisation de la SDL
+    if (SDL_Init(SDL_INIT_EVERYTHING) < 0) // Initialisation de la SDL
     {
         printf("Erreur d’initialisation de la SDL: %s", SDL_GetError());
         SDL_Quit();
@@ -40,8 +41,7 @@ int main() {
     }
 
     // Mettre en place un contexte de rendu de l’écran
-    SDL_Renderer *ecran;
-    ecran = SDL_CreateRenderer(fenetre, -1, SDL_RENDERER_ACCELERATED);
+    SDL_Renderer *ecran = SDL_CreateRenderer(fenetre, -1, SDL_RENDERER_ACCELERATED);
     // Charger l’image
     SDL_Texture *fond = charger_image("images/fond.bmp", ecran);
 
@@ -50,16 +50,13 @@ int main() {
     //Charger la font:
     TTF_Font *font = load_font("font/Android 101.ttf", 30);
 
-    FILE *pfile;
-    pfile = fopen("myfile.txt", "rb");
+    FILE *pfile = fopen("myfile.txt", "rb");
     char a[6];
     fscanf(pfile, "%[^\n]", a);
     fclose(pfile);
     int b = atoi(a);
 
-    SDL_Rect SrcR;
-    SrcR.w = 82; // Largeur de l’objet en pixels (à récupérer)
-    SrcR.h = 82; // Hauteur de l’objet en pixels (à récupérer)
+    SDL_Rect SrcR = {0,0,82,82};
     int tempsAv = 0;
     // Boucle principale
     while (!terminer) {
@@ -123,7 +120,7 @@ int main() {
 
         if (tempsActu > tempsAv + 50) {
             for (int i = 0; i < NB_ROCHERS; i++) {
-                world.tabRoche[i].pos.y += world.tabRoche[i].vitesse * 5;
+                world.tabRoche[i].pos.y += world.tabRoche[i].vitesse * 2;
                 handle_sprites_collision(&world, &world.ship, &world.tabRoche[i]);
                 exceed_limit_ennemy(&world);
                 if (world.ship.nbVies == 0) {
@@ -164,6 +161,7 @@ int main() {
 
 
     sleep(2);
+    destroy_date(world);
     TTF_CloseFont(font);
     SDL_DestroyTexture(fond);
     SDL_DestroyRenderer(ecran);

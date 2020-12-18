@@ -19,7 +19,7 @@ TTF_Font *load_font(const char *path, int font_size) {
 
 void apply_text(SDL_Renderer *renderer, int x, int y, int w, int h, const char *text, TTF_Font *font) {
 
-    SDL_Color color = {0, 191, 255};
+    SDL_Color color = {0, 191, 255, 255};
 
     SDL_Surface *surface = TTF_RenderText_Solid(font, text, color);
 
@@ -29,8 +29,4 @@ void apply_text(SDL_Renderer *renderer, int x, int y, int w, int h, const char *
 
     SDL_RenderCopy(renderer, texture, NULL, &dstrect2);
 
-}
-
-void clean_font(TTF_Font *font) {
-    TTF_CloseFont(font);
 }
