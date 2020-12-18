@@ -28,6 +28,6 @@ typedef struct world_s world_t;
 world_t initData(SDL_Renderer * ecran);
 int generate_number(int a, int b);
 
-void destroy_date(world_t w);
+void destroy_data(world_t w);
 
 #endif

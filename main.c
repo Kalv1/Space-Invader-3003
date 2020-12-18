@@ -162,7 +162,7 @@ int main() {
 
 
     sleep(2);
-    destroy_date(world);
+    destroy_data(world);
     TTF_CloseFont(font);
     SDL_DestroyTexture(fond);
     SDL_DestroyRenderer(ecran);

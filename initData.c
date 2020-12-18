@@ -67,7 +67,8 @@ world_t initData(SDL_Renderer * ecran) {
     return world;
 }
 
-void destroy_date(world_t w){
+void destroy_data(world_t w){
     SDL_DestroyTexture(w.ship.obj);
     SDL_DestroyTexture(w.roche.obj);
+    free(w.tabRoche);
 }
