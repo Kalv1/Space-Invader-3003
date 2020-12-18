@@ -1,5 +1,6 @@
 #ifndef H_COLLISION
 #define H_COLLISION
+
 #include "initData.h"
 
 void exceed_limit_right(sprite_t *ship);

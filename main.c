@@ -6,7 +6,7 @@
 #include "initData.h"
 #include "time.h"
 #include "collision.h"
-#include "ttf_sdl.c"
+#include "initTTF.c"
 
 #define DEPLACEMENT 1
 #define WINDOWN_H 600
