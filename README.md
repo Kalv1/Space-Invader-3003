@@ -1,5 +1,5 @@
 # Space-3003 :milky_way:
-Nous pilotons un petit vaisseau qui doit éviter des rochers de tailles variables, plus le temps passe plus la vitesse augmente et ainsi, la difficulté. Tout ceci en 2D.
+Nous pilotons un petit vaisseau qui doit éviter des rochers, lorsque le vaisseau est touché il perd une vie ainsi que de la vitesse. Plus le temps passe plus la vitesse augmente, et ainsi, la difficulté. Tout ceci en 2D.
 
 # Prérequis | Installation :hammer:
 Pour démarrer le projet vous aurez besoin des librairies SDL :
