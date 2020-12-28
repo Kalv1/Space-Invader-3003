@@ -1,10 +1,21 @@
-# Space-3003
+# Space-3003 :milky_way:
 Nous pilotons un petit vaisseau qui doit éviter des rochers de tailles variables, plus le temps passe plus la vitesse augmente et ainsi, la difficulté. Tout ceci en 2D.
 
-# Prérequis
-SDL2
+# Prérequis | Installation :hammer:
+Pour démarrer le projet vous aurez besoin des librairies SDL :
 
-# Suivi
+`$ sudo apt install libsdl2-2.0-0 libsdl2-ttf-2.0-0`
+
+Une fois les librairies installé il ne vous restera plus qu'à cloner le projet ou de télécharger le zip.
+
+`$ git clone https://github.com/Kalv1/Space-Invader-3003.git`
+
+Pour lancer le projet placez-vous dans la racine de celui-ci pour compiler le avec la commande make et lancez le avec :
+
+`$ ./main`
+
+
+# Suivi :clipboard:
 Semaine 0:
 Mise à jour du READ ME / Creation du makefile / Initialisation SDL
 
