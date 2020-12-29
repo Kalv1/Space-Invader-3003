@@ -1,5 +1,5 @@
 # Space-3003 :milky_way:
-Nous pilotons un petit vaisseau qui doit éviter des rochers, lorsque le vaisseau est touché il perd une vie ainsi que de la vitesse. Plus le temps passe plus la vitesse augmente, et ainsi, la difficulté. Tout ceci en 2D.
+Nous pilotons un petit vaisseau qui doit éviter des rochers, lorsque le vaisseau est touché il perd une vie ainsi que de la vitesse. Plus le temps passe plus la vitesse augmente, et ainsi, la difficulté. Tout ceci en 2D. Pour vous déplacer vous devez utiliser les touches directionnelles du clavier ←↑↓→. Une fois votre partie terminée le jeu se ferme automatiquement et si le score de votre partie est supérieur au highscore actuel. Il sera enregistré dans le fichier myFile.txt.
 
 # Prérequis | Installation :hammer:
 Pour démarrer le projet vous aurez besoin des librairies SDL :
@@ -33,3 +33,6 @@ Ajout Detection collision + initialisation d'un rocher, deplacement et affichage
 
 Semaine 5:
 Tableau rochers avec position aléatoire + score + vie + collisions
+
+Semaine 6:
+Ajout du tableau dynamique contenant les rochers. Fix des différentes fuites mémoire via valgrind, optimisation du code. Changement de texture vers des textures plus propres. Ajout de la sauvegarde du highscore ainsi que l'affichage de la vie et du score.
