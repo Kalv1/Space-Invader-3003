@@ -38,6 +38,7 @@ void exceed_limit_ennemy(world_t *world) {
     for (i = 0; i < NB_ROCHERS; i++) {
         if (world->tabRoche[i].pos.y - 40 / 2 > 600) {
             world->tabRoche[i].pos.y = -generate_number(0, 500);
+            world->tabRoche[i].pos.x = generate_number(0, 500);
             world->score += 10;
             world->tabRoche[i].vitesse += 1;
         }
