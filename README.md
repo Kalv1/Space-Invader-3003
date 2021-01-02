@@ -1,4 +1,7 @@
 # Space-3003 :milky_way:
+[![forthebadge](https://forthebadge.com/images/badges/made-with-c.svg)](https://forthebadge.com)
+
+# Description du projet.
 Nous pilotons un petit vaisseau qui doit éviter des rochers, lorsque le vaisseau est touché il perd une vie ainsi que de la vitesse. Plus le temps passe plus la vitesse augmente, et ainsi, la difficulté. Tout ceci en 2D. Pour vous déplacer vous devez utiliser les touches directionnelles du clavier ←↑↓→. Une fois votre partie terminée le jeu se ferme automatiquement et si le score de votre partie est supérieur au highscore actuel. Il sera enregistré dans le fichier myFile.txt.
 
 # Prérequis | Installation :hammer:
