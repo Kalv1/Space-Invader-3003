@@ -41,9 +41,9 @@ int main() {
         return EXIT_FAILURE;
     }
 
-    // Mettre en place un contexte de rendu de l’écran
+    // Mettre en place un contexte de rendu de l’écran.
     SDL_Renderer *ecran = SDL_CreateRenderer(fenetre, -1, SDL_RENDERER_ACCELERATED);
-    // Charger l’image
+    // Charger l’image de fond.
     SDL_Texture *fond = charger_image("images/fond.bmp", ecran);
 
     world_t world = initData(ecran);
@@ -85,7 +85,7 @@ int main() {
         }
 
 
-        //SDL_PollEvent ...
+        //Gestion des évènement clavier.
         SDL_RenderPresent(ecran);
         while (SDL_PollEvent(&evenements))
             switch (evenements.type) {
@@ -119,6 +119,8 @@ int main() {
 
         int tempsActu = SDL_GetTicks();
 
+        // Création d'une busy loop pour synchroniser les vitesse de vaisseau
+        // pas de déplacement en fonction de la vitesse de l'ordinateur grâce à celle-ci
         if (tempsActu > tempsAv + 50) {
             for (int i = 0; i < NB_ROCHERS; i++) {
                 world.tabRoche[i].pos.y += world.tabRoche[i].vitesse * 2;
@@ -131,7 +133,7 @@ int main() {
             }
         }
 
-
+        // Affichage de l'état perdu ( état 1 )
         if (etat == 1) {
             sprintf(str, "SCORE: %6d", world.score);
             apply_text(ecran, (600 / 2) - 100, (600) / 2 - 75, 200, 100, "GAMEOVER", font);
@@ -145,7 +147,7 @@ int main() {
 
     int c = world.score;
 
-
+    // Enregistrement du score si il est le nouveau meilleur score de manière automatique.
     if (b < c) {
         pfile = fopen("myfile.txt", "w+");
         if (pfile == NULL) {

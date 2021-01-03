@@ -8,31 +8,36 @@
 
 #define SHIP_SIZE 62 //besoin que de une constante car le vaisseau est carré 
 
+
+// Verification du placement du vaisseau à droite 
 void exceed_limit_right(sprite_t *ship) {
     if ((ship->pos.x + SHIP_SIZE / 2) > 600 - (SHIP_SIZE / 2)) {
         ship->pos.x = 600 - (SHIP_SIZE);
     }
 }
 
+// Verification du placement du vaisseau en haut
 void exceed_limit_up(sprite_t *ship) {
     if ((ship->pos.y) < 0) {
         ship->pos.y = 0;
     }
 }
 
-
+// Verification du placement du vaisseau à gauche
 void exceed_limit_left(sprite_t *ship) {
     if ((ship->pos.x - SHIP_SIZE / 2) < 0 - (SHIP_SIZE / 2)) {
         ship->pos.x = 0;
     }
 }
 
+// Verification du placement du vaisseau en haut
 void exceed_limit_down(sprite_t *ship) {
     if ((ship->pos.y) > 600 - SHIP_SIZE) {
         ship->pos.y = 600 - SHIP_SIZE;
     }
 }
 
+// Vérification du dépassement des rochers et remise des rochers à des coordonnées aléatoire en x et y
 void exceed_limit_ennemy(world_t *world) {
     int i;
     for (i = 0; i < NB_ROCHERS; i++) {
@@ -45,7 +50,7 @@ void exceed_limit_ennemy(world_t *world) {
     }
 }
 
-
+// Détection des et geestion des collisions entre les rochez rond et le vaisseau.
 int sprites_collide(sprite_t *ship, sprite_t *roche) {
     int collision = 0;
     float dist_centre_sprite = sqrt(pow(ship->pos.x - roche->pos.x, 2) + pow(ship->pos.y - roche->pos.y, 2));
@@ -55,6 +60,7 @@ int sprites_collide(sprite_t *ship, sprite_t *roche) {
     return collision;
 }
 
+// Gestion des évènement lié à la collisions.
 void handle_sprites_collision(world_t *world, sprite_t *ship, sprite_t *roche) {
     int collision;
     collision = sprites_collide(ship, roche);
